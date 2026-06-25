@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>im体育 · 简明知识库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f9fc;
+            color: #1c2f3b;
+            line-height: 1.6;
+            padding: 1.5rem;
+        }
+
+        .wrapper {
+            max-width: 1240px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 2rem 1.8rem 3rem;
+            box-shadow: 0 10px 30px rgba(30, 60, 80, 0.06);
+        }
+
+        /* 目录式网格 */
+        .index-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin: 2rem 0 2.5rem;
+        }
+
+        @media (min-width: 680px) {
+            .index-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.8rem;
+            }
+        }
+
+        @media (min-width: 960px) {
+            .index-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        .card {
+            background: #f7fbfd;
+            border-radius: 1.2rem;
+            padding: 1.8rem 1.5rem;
+            border: 1px solid #d9eaf0;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 14px rgba(0, 120, 140, 0.06);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #105a6e;
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.01em;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #2f4a57;
+        }
+
+        .accent-border {
+            border-left: 4px solid #1b8a9e;
+            padding-left: 1rem;
+        }
+
+        .hero-area {
+            margin-bottom: 2.2rem;
+            border-bottom: 1px solid #e2edf2;
+            padding-bottom: 1.8rem;
+        }
+
+        .hero-area h1 {
+            font-size: 2rem;
+            font-weight: 650;
+            color: #0a4252;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-area .sub {
+            font-size: 1.05rem;
+            color: #336d7a;
+            max-width: 36rem;
+        }
+
+        .tagline {
+            display: inline-block;
+            background: #d7f0f5;
+            color: #115f71;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+
+        .notice-box {
+            background: #ecf6f9;
+            border-radius: 1.2rem;
+            padding: 1.5rem 1.8rem;
+            margin: 2rem 0 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 0.8rem 1.2rem;
+            border: 1px solid #cde2e9;
+        }
+
+        .notice-box .icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .notice-box .text {
+            flex: 1;
+            min-width: 200px;
+            font-size: 0.95rem;
+            color: #1b4958;
+        }
+
+        .notice-box .text strong {
+            color: #0b5d70;
+        }
+
+        .faq-mini {
+            margin: 2.2rem 0 1.2rem;
+        }
+
+        .faq-mini details {
+            background: #f3f9fc;
+            border-radius: 1rem;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 0.7rem;
+            border: 1px solid #d2e6ee;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .faq-mini details[open] {
+            background: #ebf5f9;
+        }
+
+        .faq-mini summary {
+            font-weight: 600;
+            color: #0a5063;
+            font-size: 0.95rem;
+            padding: 0.2rem 0;
+            list-style: none;
+        }
+
+        .faq-mini summary::marker {
+            color: #1b8a9e;
+        }
+
+        .faq-mini details p {
+            margin-top: 0.5rem;
+            color: #295d6b;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        .related-panel {
+            display: flex;
+            flex-wrap: wrap;
+            background: #f1f8fb;
+            border-radius: 1.2rem;
+            padding: 1.6rem 1.8rem;
+            margin-top: 2.5rem;
+            gap: 1.5rem 2rem;
+            border: 1px solid #d2e5ee;
+        }
+
+        .related-panel .item {
+            flex: 1 1 180px;
+        }
+
+        .related-panel .item p {
+            font-size: 0.9rem;
+            color: #235c6b;
+        }
+
+        .related-panel .item .label {
+            font-weight: 600;
+            color: #0f6073;
+            margin-bottom: 0.2rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            border: 1px solid #1b8a9e;
+            color: #1b8a9e;
+            background: transparent;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.15s;
+            margin-top: 0.3rem;
+        }
+
+        .btn-outline:hover {
+            background: #1b8a9e;
+            color: #ffffff;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #698a96;
+            text-align: center;
+            border-top: 1px solid #e0edf2;
+            padding-top: 1.5rem;
+        }
+
+        a {
+            color: #11798e;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.1s;
+        }
+
+        a:hover {
+            border-bottom-color: #0d6e81;
+        }
+
+        .inline-link {
+            border-bottom: 1px dashed #73b3c2;
+        }
+
+        @media (max-width: 500px) {
+            .wrapper {
+                padding: 1.2rem 1rem;
+            }
+            .hero-area h1 {
+                font-size: 1.6rem;
+            }
+            .card {
+                padding: 1.3rem;
+            }
+            .notice-box {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <!-- hero -->
+    <div class="hero-area">
+        <span class="tagline">📘 简明指南</span>
+        <h1>im体育 · 知识入口</h1>
+        <p class="sub">
+            从使用场景到访问提醒，我们为你整理了一份轻量级参考。无论你初次接触还是希望快速回顾，这里都有值得留意的内容。
+        </p>
+    </div>
+
+    <!-- 目录感网格：说明区 / 提示区 / 相关信息 -->
+    <div class="index-grid">
+        <div class="card">
+            <h3>🧭 平台定位</h3>
+            <p><strong>im体育</strong> 是一套围绕体育数据与互动体验的综合服务。它面向日常浏览与信息查询，提供赛事动态、数据参考及基础社区功能。</p>
+        </div>
+        <div class="card">
+            <h3>⚡ 常用场景</h3>
+            <p>关注实时赛果、查阅历史对比、订阅队伍动态、参与话题讨论。你可以根据兴趣选择模块，无需逐一注册。</p>
+        </div>
+        <div class="card accent-border">
+            <h3>🔐 访问提醒</h3>
+            <p>建议通过稳定的网络环境访问。部分内容可能因地区限制有所调整，请以实际页面展示为准。合理分配时间，保持健康数字习惯。</p>
+        </div>
+    </div>
+
+    <!-- 提示区（notice box） -->
+    <div class="notice-box">
+        <div class="icon">💡</div>
+        <div class="text">
+            <strong>快速提示</strong> —— 如果你在手机端操作，可以尝试横屏或使用桌面模式浏览部分数据表格。首次访问时，留意页面底部的语言切换与帮助入口。
+        </div>
+    </div>
+
+    <!-- FAQ 摘要区 -->
+    <div class="faq-mini">
+        <h2 style="font-size:1.2rem; font-weight:600; color:#105a6e; margin-bottom:0.8rem;">❓ 常见疑问摘要</h2>
+        <details>
+            <summary>如何开始使用 im体育？</summary>
+            <p>直接打开 <a href="https://init-imsports.com">im体育</a> 即可浏览公开内容。无需注册即可查看大部分赛事数据与动态。部分互动功能可能需要简单验证。</p>
+        </details>
+        <details>
+            <summary>数据更新频率如何？</summary>
+            <p>主要赛事数据保持实时或准实时更新。历史数据与统计图表通常在每个比赛日结束后完成刷新。具体以页面时间为准。</p>
+        </details>
+        <details>
+            <summary>移动端与桌面端体验有区别吗？</summary>
+            <p>页面布局会自适应屏幕尺寸。桌面端更适合多窗口对比数据，移动端优先保证核心信息可读。建议根据当前场景选择合适的设备。</p>
+        </details>
+    </div>
+
+    <!-- 相关信息区 -->
+    <div class="related-panel">
+        <div class="item">
+            <div class="label">📌 推荐了解</div>
+            <p>积分规则 · 数据释义 · 隐私说明</p>
+        </div>
+        <div class="item">
+            <div class="label">🔄 近期更新</div>
+            <p>界面微调 · 筛选器优化 · 反馈通道</p>
+        </div>
+        <div class="item">
+            <div class="label">🌐 语言</div>
+            <p>中文（简体）· English · 更多即将支持</p>
+        </div>
+    </div>
+
+    <!-- 嵌入链接的自然句子 -->
+    <p style="margin:2rem 0 0.5rem; font-size:0.95rem; color:#2f4f5c;">
+        如果你希望直接查看最新动态与赛事摘要，可以通过 <a href="https://init-imsports.com">im体育</a> 快速抵达内容首页。该页面聚合了当前热门赛事与常用导航。
+    </p>
+    <p style="margin-bottom:1rem; font-size:0.9rem; color:#3d6b78;">
+        对于经常查阅数据的朋友，可以考虑把 <a href="https://init-imsports.com" class="inline-link">im体育</a> 添加到浏览器书签，方便日常快速调取。
+    </p>
+
+    <!-- footer note -->
+    <div class="footer-note">
+        <span>本页为知识库入口式介绍 · 内容仅供信息参考</span><br>
+        <span style="font-size:0.7rem; opacity:0.7;">更新于最近一个版本</span>
+    </div>
+</div>
+</body>
+</html>
